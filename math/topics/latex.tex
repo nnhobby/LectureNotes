@@ -1,0 +1,38 @@
+\cleardoublepage
+\phantomsection
+\appendix
+\addcontentsline{toc}{part}{Appendices}
+
+\chapter{\LaTeX{} Notes}
+
+\section{\LaTeX{} list: enumitem}
+
+List structures in \LaTeX{} have three types:
+
+\begin{itemize}
+\item \textcolor{blue}{itemize} for a bullet list
+\item \textcolor{blue}{enumerate} for an enumerated list
+\item \textcolor{blue}{description} for a descriptive list.
+\end{itemize}
+
+The description environment can have optional label:
+\begin{verbatim}
+    \item[label text] Text of your description goes here...
+\end{verbatim}
+
+\subsection{Customizing lists}
+
+
+\section{How to produce png file?}
+
+Fist use \textit{standalone} package with option \textbf{preview}:
+
+\begin{verbatim}
+\documentclass[preview, convert={outext=.png}]{standalone}
+\end{verbatim}
+
+Then compile tex source code:
+
+\begin{verbatim}
+latexmk -shell-escape textfile
+\end{verbatim}

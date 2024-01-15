@@ -1,0 +1,24 @@
+\part{Real Analysis}
+
+\chapter{sequences and series}
+
+\textbf{theorem vs proposition vs lemma} \newline
+
+The main results are theorems, smaller results are called propositions.
+A Lemma is a technical intermediate step which has no standing as an independent result.
+Lemmas are only used to chop big proofs into handy pieces.
+
+\section{sequence}
+
+\begin{theorem}
+A sequence $(a_n)^{\infty}_{n=1}$ of real numbers is convergent if and only if (iff) it is a Cauchy sequence.
+\end{theorem}
+
+\begin{proposition}[Monotone bounded sequences converge]
+Let $(a_n)^\infty_{n=m}$ be a sequence of real numbers which has some
+finite upper bound $M \in \mathbb{R} $, and which is also increasing (i.e., $a_{n+1} \ge a_n$ for all $n \ge m$).
+Then $(a_n)^\infty_{n=m}$ is convergent, and in fact
+\begin{equation*}
+\lim_{n \to \infty} a_n = sup(a_n)^\infty_{n=m} \le M
+\end{equation*}
+\end{proposition}

@@ -1,0 +1,100 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+%% set input font, after the 2018 release of LaTeX, default is utf8
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+%% math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % must be loaded after amsmath package
+\usepackage{thmtools}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\title{General Matrix Multiplication}
+\author{nnhobby}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Loop order}
+Matrix-matrix multiply is denoted as $C := AB + C$, and $m, n, k$ denotes the matrix size.
+So, the loop index is denoted by $i, j, p$.
+
+\begin{align*}
+&\textbf{for~} i := 0, \ldots , m-1 \\
+&\hspace{1em} \textbf{for~} j := 0, \ldots , n-1 \\
+&\hspace{2em} \textbf{for~} p := 0, \ldots , k-1 \\
+&\hspace{3em} \gamma_{i,j} := \alpha_{i,p} \beta_{p,j} + \gamma_{i,j} \\
+&\hspace{2em} \textbf{end} \\
+&\hspace{1em} \textbf{end} \\
+&\textbf{end}
+\end{align*}
+
+
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+{$\!\begin{aligned}
+&\textbf{for~} i := 0, \ldots , m-1 \\
+&\hspace{1em} \textbf{for~} j := 0, \ldots , n-1 \\
+&\hspace{2em} \textbf{for~} p := 0, \ldots , k-1 \\
+&\hspace{3em} \gamma_{i,j} := \alpha_{i,p} \beta_{p,j} + \gamma_{i,j} \\
+&\hspace{2em} \textbf{end} \\
+&\hspace{1em} \textbf{end} \\
+&\textbf{end}
+\end{aligned}$}
+& figure \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\begingroup
+\arraycolsep=1.4pt\def\arraystretch{1.5}
+\begin{equation*}
+\begin{array}{l}
+\textbf{for~}  j := 0, \ldots , n-1 \\
+\hspace{1em}
+\left. \begin{array}{l}
+{\bf for~} p := 0, \ldots , k-1  \\
+\hspace{1em}
+\left. \begin{array}{l}
+\textbf{for~} i := 0, \ldots , m-1  \\
+\hspace{1em} \gamma_{i,j} := \alpha_{i,p} \beta_{p,j} + \gamma_{i,j}  \\
+\textbf{end}
+\end{array} \right\} \hspace{1em} \begin{array}[t]{c}
+\underbrace{c_j := \beta_{p,j} a_p  + c_j}\\
+\mbox{axpy}
+\end{array}
+\\
+\textbf{end}
+\end{array} \right\} \hspace{1em} \begin{array}[t]{c}
+\underbrace{c_j := A b_j + c_j}\\
+\mbox{mv mult}
+\end{array}
+\\
+\textbf{end}
+\end{array}
+\end{equation*}
+\endgroup
+
+
+\appendix
+
+\section{latex}
+
+\url{https://tex.stackexchange.com/questions/121407/align-inside-of-tabular}
+
+
+\begin{verbatim}
+When to use \begingroup?
+\begingroup is a TeX primitive for group.
+\end{verbatim}
+
+
+\end{document}

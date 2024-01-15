@@ -1,0 +1,25 @@
+\chapter{Coursera: Numerical Methods for Engineers}
+
+\section{Logistic Map}
+
+Mathematically, the logistic map is written
+\begin{equation}
+    \label{eq:logistic_map}
+    x_{n+1} = r x_n (1 - x_n),
+\end{equation}
+where $r$ (sometimes also denoted $\mu$) is a positive constant.
+
+\subsection{Fixed Point}
+The fixed point means that some point satisfies $x = f(x)$. By solving 
+\begin{equation*}
+    x = rx(1-x), \quad x = 0 \quad \text{or}\quad  x = 1 - \frac{1}{r}
+\end{equation*}
+
+
+\subsection{Period-2 Point}
+We say that $x_1$ and $x_2$ are a period-2 cycle of a one-dimensional map $f(x)$ if
+\begin{equation*}
+x_2 = f(x_1) \quad\textrm{and}\quad  x_1 = f(x_2) \quad\textrm{and}\quad x_1 \ne x_2 . 
+\end{equation*}
+Determine the period-2 cycle for the logistic map by solving the equation $x = f(f(x))$,
+with $f(x) = rx(1-x)$.

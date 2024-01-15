@@ -1,0 +1,117 @@
+\documentclass[a4paper,twoside,12pt]{book}
+\usepackage[T1]{fontenc}
+%% set input font, after the 2018 release of LaTeX, default is utf8
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+
+% use fancyhdr to customize page headers
+% ref: https://tex.stackexchange.com/questions/366049/heading-not-in-capital-letter
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\itshape\nouppercase{\rightmark}}
+\fancyhead[RE]{\itshape\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{14.5pt}
+
+% Adding package bookmark improves bookmarks handling.
+% More features and faster updated bookmarks.
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{listings}
+
+%% math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % must be loaded after amsmath package
+\usepackage{thmtools}
+
+% 1. set different style for theorem like, definition like, remark like
+% 2. set lemma, proposition, definition, etc. are all share same counter,
+%        so, they are numbered sequentially.
+%
+% style explains:
+% plain: Theorem, Lemma, Corollary, Proposition, Conjecture,
+%        Criterion, Assertion
+%
+% definition : Definition, Condition, Problem, Example, Exercise,
+%              Algorithm, Question, Axiom, Property, Assumption,
+%              Hypothesis
+%
+% remark : Remark, Note, Notation, Claim, Summary,
+%          Acknowledgment, Case, Conclusion
+
+\theoremstyle{plain}
+   \newtheorem{theorem}{Theorem}[section]
+   \newtheorem{lemma}[theorem]{Lemma}
+   \newtheorem{corollary}[theorem]{Corollary}
+   \newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+   \newtheorem{definition}[theorem]{Definition}
+   \newtheorem{property}[theorem]{Property}
+   \newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter quote at the start of chapter        %
+% Source: http://tex.stackexchange.com/a/53380 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{epigraph}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Source: http://en.wikibooks.org/wiki/LaTeX/Hyperlinks %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[bookmarksopen=true,bookmarksnumbered]{hyperref}
+\usepackage[noabbrev, nameinlink]{cleveref} % to be loaded after hyperref
+\usepackage[openlevel=0]{bookmark}
+
+%%% Book's title and subtitle
+\title{\Huge \textbf{Maths Notes}}
+\author{\textsc{nnhobby}}
+\date{} % remove date
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   book order                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ref: https://tex.stackexchange.com/questions/20538/what-is-the-right-order-when-using-frontmatter-tableofcontents-mainmatter/20541
+% 1. \frontmatter turns off chapter numbering and uses roman numerals for page numbers;
+% 2. \mainmatter turns on chapter numbering, resets page numbering
+%                and uses arabic numerals for page numbers;
+% 3. \appendix resets chapter numbering, uses letters for chapter numbers
+%              and doesn't fiddle with page numbering;
+% 4. \backmatter turns off chapter numbering and doesn't fiddle with page numbering.
+\frontmatter
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Auto-generated table of contents, list of figures and list of tables %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% add toc to bookmark, \cleardoublepage avoid to link blank page!
+\cleardoublepage
+\pdfbookmark{\contentsname}{toc}
+\tableofcontents
+
+% notations
+\input{notation.tex}
+\listoffigures
+\listoftables
+
+% turn on chapter numbering to arabic number
+\mainmatter
+
+% use \input over \include
+% ref: https://tex.stackexchange.com/questions/20538/what-is-the-right-order-when-using-frontmatter-tableofcontents-mainmatter/20541#20541
+\input{topics/analysis}
+\input{topics/functional_analysis}
+\input{topics/ode}
+\input{topics/numerical_methods}
+\input{topics/others}
+\input{topics/latex}
+
+\end{document}

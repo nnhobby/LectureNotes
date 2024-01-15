@@ -1,0 +1,62 @@
+\chapter{Calculus of Variations}
+
+\section{Euler-Lagrange Equation}
+
+\begin{lemma}
+\label{lemma:variation-1}
+If $f(x) \in C[a,b]$, and if
+\begin{equation*}
+\int_a^b f(x) g(x) \,dx = 0
+\end{equation*}
+for $\forall g(x) \in L(a,b)$ such that $g(a) = g(b) = 0$, 
+then $f(x) = 0, \forall x \in [a, b]$.
+\end{lemma}
+
+\begin{proof}
+Suppose $f(x) > 0$ in some $[x_1, x_2]$, if we set $g(x) = (x - x_1)(x_2 - x)$, then
+\begin{equation*}
+\int_{x_1}^{x_2} f(x)(x - x_1)(x_2 - x)\,dx > 0 \,,
+\end{equation*}
+
+since the integrand is positive. This contradiction proves the lemma.
+\end{proof}
+
+\begin{remark}
+The \autoref{lemma:variation-1} still holds if we replace linear space $L(a,b)$ 
+by normed linear space $N_n(a,b)$. To proof this, just set
+\begin{equation*}
+    g(x) = \left[ (x - x_1)(x_2 - x) \right]^n
+\end{equation*}
+\end{remark}
+
+
+Problem: find the extremum of \cref{eq:variation-1}.
+
+\begin{equation}
+    \label{eq:variation-1}
+    J[y] = \int_{a}^{b} F[x, y, y']\, dx
+\end{equation}
+
+
+Solution 1:
+
+\begin{equation*}
+\begin{split}
+0 & = \delta J[y] \\
+  & = \int_a^b \left[F(x, y + \delta y, y' + \delta y') - F(x, y, y')\right] \, dx\\ 
+  & = \int_a^b \left[\frac{\partial F}{\partial y} \delta y 
+      + \frac{\partial F}{\partial y'} \delta y' \right]\,dx\\
+  & = \int_a^b \left[ \frac{\partial F}{\partial y} \delta y
+      - \frac{d}{dx} \left( \frac{\partial F}{\partial y'}\right) \delta y \right] dx 
+      + \left.\frac{\partial F}{\partial y'} \delta y \right\vert_a^b \\
+  & = \int_a^b \left[ \frac{\partial F}{\partial y}
+      - \frac{d}{dx} \left( \frac{\partial F}{\partial y'}\right) \right]\delta y \,dx 
+\end{split}
+\end{equation*}
+
+So, 
+\begin{equation}
+\label{Euler-Lagrange-equation}
+\frac{\partial F}{\partial y} - \frac{d}{dx} \left( \frac{\partial F}{\partial y'}\right) = 0
+\end{equation}
+which is called Euler-Lagrange equation.
